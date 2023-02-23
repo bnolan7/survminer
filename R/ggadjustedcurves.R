@@ -202,7 +202,7 @@ ggadjustedcurves.average <- function(data, fit, variable, size = 1) {
 ggadjustedcurves.marginal <- function(data, fit, variable, reference, size = 1) {
   time <- surv <- NULL
 
-  lev <- sort(unique(data[,variable][[1))
+  lev <- sort(unique(data[,variable][[1]]))
   reference[,variable] = "_reference_"
   df0 <- reference
   form <- paste(variable, "~", gsub(as.character(formula(fit))[3], pattern="\\+ *strata.*[^\\)].", replacement=""))
@@ -248,7 +248,7 @@ ggadjustedcurves.marginal <- function(data, fit, variable, reference, size = 1) 
 ggadjustedcurves.conditional <- function(data, fit, variable, size = 1) {
   time <- surv <- NULL
 
-  lev <- sort(unique(data[,variable]))
+  lev <- sort(unique(data[,variable][[1]]))
   ndata <- data[rep(1:nrow(data), each=length(lev)),
                 setdiff(colnames(data), variable)]
   ndata[,variable] = rep(lev, nrow(data))
